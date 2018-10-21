@@ -3,7 +3,8 @@ package com.zhongxb.concurrent.chapter08;
 import java.util.LinkedList;
 
 /**
- *
+ * 任务队列
+ * @author zxb
  */
 public class LinkedRunnableQueue implements RunnableQueue {
 
