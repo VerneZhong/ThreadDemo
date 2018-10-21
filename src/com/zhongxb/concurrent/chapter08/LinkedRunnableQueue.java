@@ -65,6 +65,7 @@ public class LinkedRunnableQueue implements RunnableQueue {
                     throw e;
                 }
             }
+            // 返回当前任务队列中的任务数
             return runnables.removeFirst();
         }
     }
