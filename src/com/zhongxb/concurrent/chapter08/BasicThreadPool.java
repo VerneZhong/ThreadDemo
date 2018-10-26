@@ -51,31 +51,18 @@ public class BasicThreadPool extends Thread implements ThreadPool {
      */
     private final Queue<ThreadTask> threadTaskQueue = new ArrayDeque<>();
 
-    /**
-     * 任务队列到达上限了的默认拒绝策略
-     */
-    public static final DenyPolicy DEFAULT_DENY_POLICY = new DenyPolicy.DiscardDenyPolicy();
-
-    public static final ThreadFactory DEFAULT_THREAD_FACTORY = new DefaultThreadFacoty();
-
     private long keepAliveTime;
 
     private TimeUnit timeUnit;
 
-    private volatile static ThreadPool threadPool;
-
-    private BasicThreadPool(int initSize, int maxSize, int coreSize, int queueSize) {
-        this(initSize, maxSize, coreSize, DEFAULT_THREAD_FACTORY, queueSize, DEFAULT_DENY_POLICY, 10, TimeUnit.SECONDS);
-    }
-
-    private BasicThreadPool(int initSize, int maxSize, int coreSize, ThreadFactory threadFactory, int queueSize, DenyPolicy denyPolicy, long keepAliveTime, TimeUnit timeUnit) {
-        this.initSize = initSize;
-        this.maxSize = maxSize;
-        this.coreSize = coreSize;
-        this.threadFactory = threadFactory;
-        this.runnableQueue = new LinkedRunnableQueue(queueSize, denyPolicy, this);
-        this.keepAliveTime = keepAliveTime;
-        this.timeUnit = timeUnit;
+    public BasicThreadPool(ThreadPoolBuilder builder) {
+        this.initSize = builder.getInitSize();
+        this.maxSize = builder.getMaxSize();
+        this.coreSize = builder.getCoreSize();
+        this.threadFactory = new DefaultThreadFactory();
+        this.runnableQueue = new LinkedRunnableQueue(builder.getQueueMaxSize(), builder.getDenyPolicy(), this);
+        this.keepAliveTime = builder.getKeepAliveTime();
+        this.timeUnit = builder.getTimeUnit();
         this.init();
     }
 
@@ -116,7 +103,7 @@ public class BasicThreadPool extends Thread implements ThreadPool {
     @Override
     public void run() {
         // 用于维护线程数量，比如扩容，回收等工作
-        while (!isShutdown && !isInterrupted()) {
+        while (!isShutdown() && !isInterrupted()) {
             try {
                 timeUnit.sleep(keepAliveTime);
             } catch (InterruptedException e) {
@@ -124,7 +111,7 @@ public class BasicThreadPool extends Thread implements ThreadPool {
                 break;
             }
             synchronized (this) {
-                if (isShutdown) {
+                if (isShutdown()) {
                     break;
                 }
                 // 当前的队列中有任务尚未处理
@@ -161,7 +148,7 @@ public class BasicThreadPool extends Thread implements ThreadPool {
      */
     @Override
     public void execute(Runnable runnable) {
-        if (this.isShutdown) {
+        if (isShutdown()) {
             throw new IllegalStateException("The thread pool is destroy.");
         }
         // 往任务队列里插入runnable
@@ -171,7 +158,7 @@ public class BasicThreadPool extends Thread implements ThreadPool {
     @Override
     public void shutdown() {
         synchronized (this) {
-            if (isShutdown) {
+            if (isShutdown()) {
                 return;
             }
             isShutdown = true;
@@ -220,16 +207,9 @@ public class BasicThreadPool extends Thread implements ThreadPool {
     }
 
     private void checkActive() {
-        if (isShutdown) {
+        if (isShutdown()) {
             throw new IllegalStateException("The thread pool is destroy.");
         }
-    }
-
-    public static synchronized ThreadPool getInstance(int initSize, int maxSize, int coreSize, int queueSize) {
-        if (threadPool == null) {
-            threadPool = new BasicThreadPool(initSize, maxSize, coreSize, queueSize);
-        }
-        return threadPool;
     }
 
 }

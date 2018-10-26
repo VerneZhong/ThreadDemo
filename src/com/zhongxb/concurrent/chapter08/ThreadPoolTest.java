@@ -7,7 +7,10 @@ public class ThreadPoolTest {
     public static void main(String[] args) throws InterruptedException {
 
         //定义线程池，初始化线程为2，核心线程4，最大线程6，任务队列最大允许1000个
-        ThreadPool threadPool = BasicThreadPool.getInstance(2, 6, 4, 1000);
+        ThreadPool threadPool = new ThreadPoolBuilder().setInitSize(2)
+                .setCoreSize(4).setMaxSize(6).setQueueMaxSize(1000)
+                .setDenyPolicy(new DenyPolicy.DiscardDenyPolicy())
+                .setKeepAliveTime(10).setTimeUnit(TimeUnit.SECONDS).build();
 
         for (int i = 0; i < 20; i++) {
             threadPool.execute(() -> {
@@ -25,10 +28,10 @@ public class ThreadPoolTest {
             System.out.println("getCoreSize:" + threadPool.getCoreSize());
             System.out.println("getMaxSize:" + threadPool.getMaxSize());
             System.out.println("--------------------------------");
-            TimeUnit.SECONDS.sleep(30);
-
-            threadPool.shutdown();
-            Thread.currentThread().join();
+            TimeUnit.SECONDS.sleep(5);
+//
+//            threadPool.shutdown();
+//            Thread.currentThread().join();
         }
 
     }

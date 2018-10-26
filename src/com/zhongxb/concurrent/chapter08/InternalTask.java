@@ -1,7 +1,8 @@
 package com.zhongxb.concurrent.chapter08;
 
 /**
- * 用于线程池内部，该类会使用到RunnableQueue，不断从
+ * 用于线程池内部，该类会使用到RunnableQueue，不断从任务队列获取任务并执行
+ * @author zxb
  */
 public class InternalTask implements Runnable {
 
