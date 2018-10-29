@@ -36,22 +36,22 @@ public interface TaskLifeCyclc<T> {
 
         @Override
         public void onStart(Thread thread) {
-
+            System.out.println("task started.");
         }
 
         @Override
         public void onRunning(Thread thread) {
-
+            System.out.println("task running.");
         }
 
         @Override
         public void onFinish(Thread thread, T result) {
-
+            System.out.println("task finished. result :" + result);
         }
 
         @Override
         public void onError(Thread thread, Exception e) {
-
+            System.out.println("task error.");
         }
     }
 }

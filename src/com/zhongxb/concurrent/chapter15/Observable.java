@@ -1,5 +1,8 @@
 package com.zhongxb.concurrent.chapter15;
 
+/**
+ * 获取生命周期接口
+ */
 public interface Observable {
 
     /**
@@ -14,6 +17,11 @@ public interface Observable {
      * @return
      */
     Cycle getCycle();
+
+    /**
+     * 观察者执行的方法
+     */
+    void run();
 
     /**
      * 定义启动线程的方法，主要作用是为了屏蔽Thread方法
