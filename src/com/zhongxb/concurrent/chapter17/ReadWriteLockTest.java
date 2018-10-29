@@ -17,7 +17,7 @@ public class ReadWriteLockTest {
         ShareData shareData = new ShareData(50);
 
         // 创建2个线程写操作
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 10; i++) {
             new Thread(() -> {
                 for (int j = 0; j < text.length(); j++) {
                     try {
