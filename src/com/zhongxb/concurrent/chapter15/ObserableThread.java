@@ -6,7 +6,7 @@ public class ObserableThread<T> implements Observable {
 
     private final Task<T> task;
 
-    private final Cycle cycle;
+    private Cycle cycle;
 
     private final TaskLifeCyclc taskLifeCyclc;
 
