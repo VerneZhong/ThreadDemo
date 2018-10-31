@@ -55,6 +55,10 @@ public class BasicThreadPool extends Thread implements ThreadPool {
 
     private TimeUnit timeUnit;
 
+    private BasicThreadPool() {
+
+    }
+
     public BasicThreadPool(ThreadPoolBuilder builder) {
         this.initSize = builder.getInitSize();
         this.maxSize = builder.getMaxSize();
