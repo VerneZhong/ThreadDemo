@@ -1,4 +1,4 @@
-package com.zhongxb.concurrent.chapter24;
+package com.zhongxb.concurrent.chapter24.example01;
 
 import com.zhongxb.concurrent.chapter08.DenyPolicy;
 import com.zhongxb.concurrent.chapter08.ThreadPool;

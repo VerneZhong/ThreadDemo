@@ -1,4 +1,4 @@
-package com.zhongxb.concurrent.chapter24;
+package com.zhongxb.concurrent.chapter24.example01;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
