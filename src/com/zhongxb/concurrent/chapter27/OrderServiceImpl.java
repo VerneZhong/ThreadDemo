@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class OrderServiceImpl implements OrderService {
 
+    @ActiveMethod
     @Override
     public Future<String> findOrderDetails(long orderId) {
         return FutureService.<Long, String>newService().submit(input -> {
@@ -25,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
         }, orderId);
     }
 
+    @ActiveMethod
     @Override
     public void order(String account, long orderId) {
         try {
