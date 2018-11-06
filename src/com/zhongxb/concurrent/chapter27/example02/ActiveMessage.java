@@ -1,6 +1,7 @@
-package com.zhongxb.concurrent.chapter27;
+package com.zhongxb.concurrent.chapter27.example02;
 
 import com.zhongxb.concurrent.chapter19.Future;
+import com.zhongxb.concurrent.chapter27.example01.ActiveFuture;
 
 import java.lang.reflect.Method;
 
@@ -62,7 +63,7 @@ class ActiveMessage {
     /**
      * 主要对ActiveMessage的构建
      */
-    private class Builder {
+    static class Builder {
         private Object[] objects;
         private Method method;
         private ActiveFuture<Object> future;

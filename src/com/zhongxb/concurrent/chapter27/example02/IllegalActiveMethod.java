@@ -1,4 +1,4 @@
-package com.zhongxb.concurrent.chapter27;
+package com.zhongxb.concurrent.chapter27.example02;
 
 /**
  * 方法不符合则被转换为Active方法时会抛出该异常

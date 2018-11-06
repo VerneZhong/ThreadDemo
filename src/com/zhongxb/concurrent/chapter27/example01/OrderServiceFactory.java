@@ -1,4 +1,8 @@
-package com.zhongxb.concurrent.chapter27;
+package com.zhongxb.concurrent.chapter27.example01;
+
+import com.zhongxb.concurrent.chapter27.example01.ActiveMessageQueue;
+import com.zhongxb.concurrent.chapter27.example01.OrderService;
+import com.zhongxb.concurrent.chapter27.example01.OrderServiceProxy;
 
 /**
  * 订单工厂类

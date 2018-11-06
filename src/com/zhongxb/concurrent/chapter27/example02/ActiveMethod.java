@@ -1,4 +1,4 @@
-package com.zhongxb.concurrent.chapter27;
+package com.zhongxb.concurrent.chapter27.example02;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

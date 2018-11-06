@@ -1,4 +1,4 @@
-package com.zhongxb.concurrent.chapter27;
+package com.zhongxb.concurrent.chapter27.example01;
 
 import java.util.LinkedList;
 
@@ -7,19 +7,19 @@ import java.util.LinkedList;
  * @author Mr.zxb
  * @date 2018-11-01 16:12
  */
-public class ActiveMessageQueue {
+public class ActiveMessageQueue<T> {
 
     /**
      * 用于存放提交的MethodMessage消息
      */
-    private final LinkedList<MethodMessage> messages = new LinkedList<>();
+    private final LinkedList<T> messages = new LinkedList<>();
 
     public ActiveMessageQueue() {
         // 启动Worker线程
         new ActiveDaemonThread(this).start();
     }
 
-    public void offer(MethodMessage message) {
+    public void offer(T message) {
         synchronized (this) {
             messages.addLast(message);
             // 因为只有一个线程负责take数据，因此没有必要使用notifyAll();
@@ -27,7 +27,7 @@ public class ActiveMessageQueue {
         }
     }
 
-    protected MethodMessage take() {
+    protected T take() {
         synchronized (this) {
             // 当MethodMessage队列中没有Message的时候，执行线程进入阻塞
             while (messages.isEmpty()) {

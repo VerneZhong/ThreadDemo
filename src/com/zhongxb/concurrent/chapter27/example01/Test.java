@@ -1,4 +1,8 @@
-package com.zhongxb.concurrent.chapter27;
+package com.zhongxb.concurrent.chapter27.example01;
+
+import com.zhongxb.concurrent.chapter27.example01.OrderService;
+import com.zhongxb.concurrent.chapter27.example01.OrderServiceFactory;
+import com.zhongxb.concurrent.chapter27.example01.OrderServiceImpl;
 
 /**
  * @author Mr.zxb
