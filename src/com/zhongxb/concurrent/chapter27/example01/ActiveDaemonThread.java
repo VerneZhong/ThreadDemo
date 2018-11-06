@@ -1,8 +1,5 @@
 package com.zhongxb.concurrent.chapter27.example01;
 
-import com.zhongxb.concurrent.chapter27.example01.ActiveMessageQueue;
-import com.zhongxb.concurrent.chapter27.example01.MethodMessage;
-
 /**
  * 该类是个守护线程，主要是从队列中获取Message然后执行execute方法
  * @author Mr.zxb
