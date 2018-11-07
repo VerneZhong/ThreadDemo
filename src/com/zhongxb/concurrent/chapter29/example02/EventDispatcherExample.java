@@ -9,7 +9,7 @@ public class EventDispatcherExample {
     /**
      * InputEvent中定义两个属性x和y，主要用于在其他Channel中的运算
      */
-    static class InputEvent extends Event {
+    public static class InputEvent extends Event {
         private final int x;
         private final int y;
 
@@ -30,7 +30,7 @@ public class EventDispatcherExample {
     /**
      * 用于存放结果的Event
      */
-    static class ResultEvent extends Event {
+    public static class ResultEvent extends Event {
         private final int result;
 
         public ResultEvent(int result) {
