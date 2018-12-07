@@ -19,12 +19,12 @@ public class CountDownLatchTest {
         new ProgrammerTravel(latch, "Xcl", "Walking").start();
 
         // 当前线程
-//        latch.await();
-        try {
-            latch.await(5, TimeUnit.SECONDS);
+        latch.await();
+//        try {
+//            latch.await(5, TimeUnit.SECONDS);
             System.out.println("== all of programmer arrived ==");
-        } catch (WaitTimeoutException e) {
-            e.printStackTrace();
-        }
+//        } catch (WaitTimeoutException e) {
+//            e.printStackTrace();
+//        }
     }
 }

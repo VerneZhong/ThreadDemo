@@ -18,8 +18,8 @@ public class CountDownLatchJdkTest {
         new ProgrammerTravel(latch, "Whb", "Bus").start();
         new ProgrammerTravel(latch, "Xcl", "Walking").start();
 
-//        latch.await();
-        latch.await(5, TimeUnit.SECONDS);
+        latch.await();
+//        latch.await(5, TimeUnit.SECONDS);
         System.out.println("== all of programmer arrived ==");
     }
 }

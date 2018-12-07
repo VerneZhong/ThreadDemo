@@ -49,6 +49,12 @@ public class ProgrammerTravel extends Thread {
         }
         System.out.println(programmer + " already by " + transportation);
         // 完成任务时使计数器减1
-        countDownLatch.countDown();
+        if (latch != null) {
+            // 自定义的CountDownLatch
+            latch.countDown();
+        } else {
+            // jdk的CountDownLatch
+            countDownLatch.countDown();
+        }
     }
 }
